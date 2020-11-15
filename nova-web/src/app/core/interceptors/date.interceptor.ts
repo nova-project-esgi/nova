@@ -31,7 +31,7 @@ export class DateInterceptor implements HttpInterceptor {
     );
   }
 
-  convertToDate(body) {
+  private convertToDate(body): void {
     if (body === null || body === undefined) {
       return body;
     }
@@ -50,7 +50,7 @@ export class DateInterceptor implements HttpInterceptor {
     }
   }
 
-  isIso8601(value) {
+  private isIso8601(value): boolean {
     if (value === null || value === undefined) {
       return false;
     }

@@ -13,7 +13,12 @@
         <input formControlName="password" id="password" matInput type="password">
         <mat-hint ><a routerLink="/recovery"  class="mat-accent">Mot de passe oublié ?</a></mat-hint>
       </mat-form-field>
-      <div class="d-flex justify-content-center my-2">
+      <div class="d-flex justify-content-around align-items-center my-2">
+        <mat-checkbox
+          formControlName="rememberMe"
+          labelPosition="before">
+          Se souvenir de moi
+        </mat-checkbox>
         <button [disabled]="!isFormValid()" mat-stroked-button type="submit" id="sign-in-button">Connexion
         </button>
       </div>

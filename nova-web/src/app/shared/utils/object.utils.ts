@@ -72,12 +72,12 @@ export  class ObjectUtils {
     return this.isEmpty(obj) ? obj : newObj;
   }
 
-  private static isEmpty(obj: any) {
+  private static isEmpty(obj: any): any {
     if (!isObject(obj)) { return true; }
     return Object.keys(obj).length === 0;
   }
 
-  public static getNoEmptyObjectProperties(obj: any){
+  public static getNoEmptyObjectProperties(obj: any): any{
     if (!isObject(obj)) { return obj; }
     const nonEmptyObject = {};
     Object.keys(obj).forEach(k => {
@@ -88,7 +88,7 @@ export  class ObjectUtils {
     return nonEmptyObject;
   }
 
-  public static copyProperties<T>(src: any, dst: T): T{
+  public static copyExistingProperties<T>(src: any, dst: T): T{
     if (!isObject(src) || !isObject(dst)) { return dst; }
     Object.keys(dst).forEach(k => {
       if (src.hasOwnProperty(k)){
@@ -97,6 +97,15 @@ export  class ObjectUtils {
     });
     return dst;
   }
+
+  public static copyProperties<T>(src: any, dst: T): T{
+    if (!isObject(src) || !isObject(dst)) { return dst; }
+    Object.keys(src).forEach(k => {
+        dst[k] = src[k];
+    });
+    return dst;
+  }
+
 
   public static tryGetEmptyConstructorObject<T>(ctr: any): T | undefined{
     try{

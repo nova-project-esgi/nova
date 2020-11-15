@@ -7,7 +7,7 @@ export class ObservableObject<T>{
   constructor(obj: {object?: T, dstObject?: any, dstCtr?: any}) {
     const dstObj = this.getDstObject(obj);
     if (obj?.object && dstObj){
-      ObjectUtils.copyProperties(obj.object, dstObj);
+      ObjectUtils.copyExistingProperties(obj.object, dstObj);
       this.observer = observe(dstObj);
     } else {
       this.observer = observe(obj.object);
@@ -21,12 +21,12 @@ export class ObservableObject<T>{
     if (this.object && ! this.dstObject){
       return this.object;
     }
-    return ObjectUtils.copyProperties(this.object, this.dstObject);
+    return ObjectUtils.copyExistingProperties(this.object, this.dstObject);
   }
 
   get operationsFromSource(): BaseOperation[]{
     if (this.dstObject){
-      ObjectUtils.copyProperties(this.object, this.dstObject);
+      ObjectUtils.copyExistingProperties(this.object, this.dstObject);
     }
     return generate(this.observer);
   }
@@ -46,7 +46,7 @@ export class ObservableObject<T>{
 
   getOperationsFromExternal(obj: any): BaseOperation[]{
     if (this.dstObject){
-      ObjectUtils.copyProperties(obj, this.dstObject);
+      ObjectUtils.copyExistingProperties(obj, this.dstObject);
     }
     return generate(this.observer);
   }

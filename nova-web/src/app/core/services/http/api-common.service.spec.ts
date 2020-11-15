@@ -1,13 +1,13 @@
 import {TestBed} from '@angular/core/testing';
 
-import {ApiCommonService} from './api-common.service';
+import {ApiServiceBase} from './api-service.base';
 
 describe('ApiCrawlerService', () => {
-  let service: ApiCommonService;
+  let service: ApiServiceBase;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiCommonService);
+    service = TestBed.inject(ApiServiceBase);
   });
 
   it('should be created', () => {

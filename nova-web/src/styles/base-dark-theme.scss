@@ -5,13 +5,10 @@
 
 
 // Define a theme.
-$primary: mat-palette($mat-deep-purple);
+$primary: mat-palette($mat-amber);
 $accent:  mat-palette($mat-light-blue, A200, A100, A400);
 $warn:  mat-palette($mat-red, A200, A100, A400);
 
 $theme: mat-dark-theme($primary, $accent, $warn);
 
-
-.unicorn-dark-theme {
-  @include angular-material-color($theme);
-}
+@include angular-material-color($theme);

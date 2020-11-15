@@ -1,8 +1,8 @@
 import {ObjectUtils} from './object.utils';
-import {GramOrderEnum} from '../enums/gram-order.enum';
 import * as Case from 'case';
 import {KeyValue} from '@angular/common';
 import {UrlUtils} from './url.utils';
+import {GramOrderEnum} from '../enums/gram-order.enum';
 import {QueryEnum} from '../enums/query.enum';
 
 export class QueryUtils{

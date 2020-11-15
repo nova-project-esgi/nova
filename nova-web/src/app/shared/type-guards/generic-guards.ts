@@ -1,4 +1,3 @@
-import {ObjectUtils} from '../utils/object.utils';
 
 export const isOfTypeByKey = <T>(
   varToBeChecked: any,
@@ -12,11 +11,11 @@ export const isOfTypeByKeys = <T>(
 ): varToBeChecked is T =>
   propertiesToCheckFor.every(key => (varToBeChecked as T)[key] !== undefined);
 
-export const isOfTypeByCtr = <T>(
-  varToBeChecked: any,
-  ctr: any
-): varToBeChecked is T =>
-  isOfTypeByKeys<T>(varToBeChecked, ...ObjectUtils.getPropertiesByType(ctr));
+// export const isOfTypeByCtr = <T>(
+//   varToBeChecked: any,
+//   ctr: any
+// ): varToBeChecked is T =>
+//   isOfTypeByKeys<T>(varToBeChecked, ...ObjectUtils.getPropertiesByType(ctr));
 
 export const isObject = (obj: any): boolean =>  {
   return !!obj && typeof obj === 'object';

@@ -4,7 +4,7 @@ import {ObjectUtils} from './object.utils';
 export class PatchUtils {
   public static generatePatchOperations(src: any, dst: any): BaseOperation[]{
     const observer = observe(dst);
-    ObjectUtils.copyProperties(src, dst);
+    ObjectUtils.copyExistingProperties(src, dst);
     return generate(observer);
   }
 }

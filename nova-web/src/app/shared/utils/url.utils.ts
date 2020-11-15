@@ -2,7 +2,7 @@ import {KeyValue} from '@angular/common';
 import {JsonUtils} from './json.utils';
 import {QueryUtils} from './query.utils';
 import {QueryEnum} from '../enums/query.enum';
-import {GetParams} from '../../core/services/http/api-common.service';
+import {GetParams} from '../../core/services/http/api-service.base';
 
 export class UrlUtils{
 

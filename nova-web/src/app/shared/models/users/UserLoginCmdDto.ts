@@ -1,10 +1,10 @@
 import {ObjectUtils} from '../../utils/object.utils';
 
-export class UserLogin {
+export class UserLoginCmdDto {
   username = '';
   password = '';
 
-  constructor(user?: Partial<UserLogin>) {
+  constructor(user?: Partial<UserLoginCmdDto>) {
     ObjectUtils.copyExistingProperties(user, this);
   }
 }

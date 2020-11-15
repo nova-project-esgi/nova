@@ -20,7 +20,7 @@ export interface GetParams<T, F = T> {
   filters?: KeyValue<string, any> [];
 }
 
-export abstract class ApiCommonService {
+export abstract class ApiServiceBase {
 
   protected abstract url: string;
   protected abstract http: HttpClient;
