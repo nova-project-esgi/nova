@@ -1,0 +1,3 @@
+[submodule "nova.web"]
+	path = nova.web
+	url = https://gitlab.com/sbailleul/nova.web.git

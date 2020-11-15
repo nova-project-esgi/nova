@@ -1,0 +1,17 @@
+@import '../../node_modules/@angular/material/theming';
+
+// Include non-theme styles for core.
+@include mat-core();
+
+
+// Define a theme.
+$primary: mat-palette($mat-deep-purple);
+$accent:  mat-palette($mat-light-blue, A200, A100, A400);
+$warn:  mat-palette($mat-red, A200, A100, A400);
+
+$theme: mat-dark-theme($primary, $accent, $warn);
+
+
+.unicorn-dark-theme {
+  @include angular-material-color($theme);
+}

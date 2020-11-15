@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  sql_server_express_db:
+    container_name: "sql_server_express_nova"
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    env_file:
+      - ./sql_server.env
+    ports:
+      - "1433:1433"
+    volumes:
+      - ../db:/var/opt/mssql
+    networks:
+      - nova_api_network
+
+networks:
+  nova_api_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.19.0.0/16"
