@@ -11,7 +11,7 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - ../db:/var/opt/mssql
+      - ../db:/var/opt/mssql/data
     networks:
       - nova_api_network
 networks:
