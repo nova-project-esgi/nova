@@ -1,7 +1,50 @@
 version: '3.1'
 
 services:
-
+  axonserver:
+    image: axoniq/axonserver
+    container_name: "axonserver"
+    ports:
+      - '8024:8024'
+      - '8124:8124'
+    restart: always
+    volumes:
+      - ../event-store:/data
+  axonserver-prod:
+    image: axoniq/axonserver
+    container_name: "axonserver-prod"
+    ports:
+      - '8025:8024'
+      - '8125:8124'
+    restart: always
+    volumes:
+      - ../event-store-prod:/data
+  nova-api:
+    container_name: "nova-api"
+    image: nova/nova-api
+    build:
+      context: ../nova.api
+    working_dir: /app
+    env_file:
+      - ./nova-api.env
+    ports:
+      - "8002:8001"
+    networks:
+      - nova_network
+  nova-web:
+    container_name: "nova-web"
+    image: nova/nova-web
+    build:
+      context: ../nova.web
+      dockerfile: ./Dockerfile
+    working_dir: /app
+    restart: always
+    env_file:
+      - ./nova-web.env
+    ports:
+      - "4201:80"
+    networks:
+      - nova_network
   sql_server_express_nova:
     container_name: "sql_server_express_nova"
     restart: always
@@ -13,24 +56,12 @@ services:
     volumes:
       - ../db:/var/opt/mssql/data
     networks:
-      - nova_api_network
+      - nova_network
 networks:
-  nova_api_network:
+  nova_network:
     ipam:
       driver: default
       config:
         - subnet: "172.19.0.0/16"
 
 
-#  api:
-#    container_name: "nova-api"
-#    build:
-#      context: ../nova-api
-#      dockerfile: ./Dockerfile
-#    working_dir: /app
-#    env_file:
-#      - ./nova-api.env
-#    ports:
-#      - "8002:8001"
-#    networks:
-#      - nova_api_network
