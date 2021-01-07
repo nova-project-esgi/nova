@@ -25,10 +25,13 @@ services:
     build:
       context: ../nova.api
     working_dir: /app
+    restart: always
     env_file:
       - ./nova-api.env
     ports:
       - "8002:8001"
+    volumes:
+      - ../nova-api-files:/workspace/files
     networks:
       - nova_network
   nova-web:
