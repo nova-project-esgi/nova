@@ -1,4 +1,4 @@
-[submodule "nova.web"]
+[submodule "nova.api"]
 	path = nova.api
 	url = https://github.com/nova-project-esgi/nova.api.git
 [submodule "nova.web"]
