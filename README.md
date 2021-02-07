@@ -1,5 +1,8 @@
-# Nova 
+# Nova
 To get functional environment you have to clone git submodules of the project.
+```shell
+git submodule update --init --recursive     
+```
 
 ## Run local environment 
 To build and run local environment run this command:
