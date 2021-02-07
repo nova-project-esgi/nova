@@ -1,3 +1,9 @@
 [submodule "nova.web"]
+	path = nova.api
+	url = https://github.com/nova-project-esgi/nova.api.git
+[submodule "nova.web"]
 	path = nova.web
-	url = https://gitlab.com/sbailleul/nova.web.git
+	url = https://github.com/nova-project-esgi/nova.web.git
+[submodule "nova.mobile"]
+	path = nova.mobile
+	url = https://github.com/nova-project-esgi/nova.mobile.git
