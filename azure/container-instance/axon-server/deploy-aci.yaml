@@ -1,0 +1,37 @@
+apiVersion: '2019-12-01'
+location: westeu
+name: nova-cloud-axon-server
+properties:
+  containers:
+    - name: nova-cloud-axon-server
+      properties:
+        environmentVariables: []
+        image: axoniq/axonserver:4.4.9
+        ports:
+          - port: 8024
+          - port: 8124
+          - port: 8224
+        resources:
+          requests:
+            cpu: 1.0
+            memoryInGB: 1.5
+        volumeMounts:
+          - mountPath: /data
+            name: nova-cloud-axon-server-data
+  osType: Linux
+  restartPolicy: Always
+  ipAddress:
+    type: Public
+    ports:
+      - port: 8024
+      - port: 8124
+      - port: 8224
+    dnsNameLabel:  nova-cloud-axon-server
+  volumes:
+    - name: nova-cloud-axon-server-data
+      azureFile:
+        sharename: STORAGE_NAME
+        storageAccountName: STORAGE_ACCOUNT_NAME
+        storageAccountKey: STORAGE_KEY
+tags: {}
+type: Microsoft.ContainerInstance/containerGroups

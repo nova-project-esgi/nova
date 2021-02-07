@@ -1,37 +1,20 @@
 version: '3.1'
 
 services:
-  axonserver:
-    image: axoniq/axonserver
-    container_name: "axonserver"
-    ports:
-      - '8024:8024'
-      - '8124:8124'
-    restart: always
-    volumes:
-      - ../event-store:/data
-  axonserver-prod:
-    image: axoniq/axonserver
-    container_name: "axonserver-prod"
-    ports:
-      - '8025:8024'
-      - '8125:8124'
-    restart: always
-    volumes:
-      - ../event-store-prod:/data
   nova-api:
     container_name: "nova-api"
     image: nova/nova-api
     build:
+      dockerfile: ../nova.api/docker/Dockerfile.prod
       context: ../nova.api
     working_dir: /app
     restart: always
-    env_file:
-      - ./nova-api.env
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
     ports:
       - "8002:8001"
     volumes:
-      - ../nova-api-files:/workspace/files
+      - ../nova-api-upload:/app/upload
     networks:
       - nova_network
   nova-web:
@@ -42,12 +25,28 @@ services:
       dockerfile: ./Dockerfile
     working_dir: /app
     restart: always
-    env_file:
-      - ./nova-web.env
+    environment:
+      PORT: 80
     ports:
       - "4201:80"
     networks:
       - nova_network
+
+  nova-web-cloud:
+    container_name: "nova-web-cloud"
+    image: nova/nova-web-cloud
+    build:
+      context: ../nova.web
+      dockerfile: ./Dockerfile.cloud
+    working_dir: /app
+    restart: always
+    environment:
+      PORT: 80
+    ports:
+      - "4202:80"
+    networks:
+      - nova_network
+
   sql_server_express_nova:
     container_name: "sql_server_express_nova"
     restart: always
@@ -63,7 +62,7 @@ services:
 networks:
   nova_network:
     ipam:
-      driver: default
+      driver: bridge
       config:
         - subnet: "172.19.0.0/16"
 
