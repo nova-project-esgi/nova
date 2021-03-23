@@ -32,21 +32,6 @@ services:
     networks:
       - nova_network
 
-  nova-web-cloud:
-    container_name: "nova-web-cloud"
-    image: nova/nova-web-cloud
-    build:
-      context: ../nova.web
-      dockerfile: ./Dockerfile.cloud
-    working_dir: /app
-    restart: always
-    environment:
-      PORT: 80
-    ports:
-      - "4202:80"
-    networks:
-      - nova_network
-
   sql_server_express_nova:
     container_name: "sql_server_express_nova"
     restart: always
@@ -61,9 +46,22 @@ services:
       - nova_network
 networks:
   nova_network:
-    ipam:
-      driver: bridge
-      config:
-        - subnet: "172.19.0.0/16"
+    driver: bridge
+    name: nova_network
 
 
+
+#  nova-web-cloud:
+#    container_name: "nova-web-cloud"
+#    image: nova/nova-web-cloud
+#    build:
+#      context: ../nova.web
+#      dockerfile: ./Dockerfile.cloud
+#    working_dir: /app
+#    restart: always
+#    environment:
+#      PORT: 80
+#    ports:
+#      - "4202:80"
+#    networks:
+#      - nova_network
