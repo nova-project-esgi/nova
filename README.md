@@ -4,11 +4,12 @@ To get functional environment you have to clone git submodules of the project.
 git submodule update --init --recursive     
 ```
 
-## Run local environment 
+## Run local environment
 To build and run local environment run this command:
 ```shell
 docker-compose  -f docker/docker-compose.yml  up
 ```
+In created SqlServer instance create a new database named nova-prod
 
 ## Cloud service
 You can test cloud environment by accessing with a browser nova-web-cloud  spa website.
